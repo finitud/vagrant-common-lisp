@@ -10,8 +10,11 @@ It includes the following features:
 * Port 80 forwarded to localhost:8000
 
 To set up, clone the repository and run:
+
      vagrant up
+
 The new box can be accessed by typing:
+
      vagrant ssh
 
 The contents of the current directory can be accessed from the virtual machine at `/vagrant`,
