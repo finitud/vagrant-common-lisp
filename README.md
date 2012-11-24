@@ -25,7 +25,7 @@ Issues
 ======
 * The Quicklisp configuration script doesn't work properly. To finish the VM setup, run
 
-    ./sbcl-ql-setup.sh
+     ./sbcl-ql-setup.sh
 
 the first time you log into the VM.
 
