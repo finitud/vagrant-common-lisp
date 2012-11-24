@@ -2,14 +2,9 @@ exec { 'initial update':
   command => '/usr/bin/apt-get update',
 }
 
-package { 'curl':
+package { ['curl', 'python-software-properties']:
   ensure => present,
   require => Exec['initial update'],
-}
-
-package { 'python-software-properties':
-  ensure => present,
-  require => Package['curl'],
 }
 
 exec { 'add emacs repository':
@@ -22,17 +17,7 @@ exec { 'second update':
   require => Exec['add emacs repository'],
 }
 
-package { 'emacs24':
-  ensure => present,
-  require => Exec['second update'],
-}
-
-package { 'emacs24-el':
-  ensure => present,
-  require => Exec['second update'],
-}
-
-package { 'emacs24-common-non-dfsg':
+package { ['emacs24', 'emacs24-el', 'emacs24-common-non-dfsg']:
   ensure => present,
   require => Exec['second update'],
 }
@@ -42,20 +27,11 @@ package { 'git-core':
   require => Exec['second update'],
 }
 
-package { 'sbcl':
+package { ['sbcl', 'sbcl-doc', 'sbcl-source']:
   ensure => present,
-  require => Package['git-core'],
+  require => Exec['second update'],
 }
 
-package { 'sbcl-doc':
-  ensure => present,
-  require => Package['git-core'],
-}
-
-package { 'sbcl-source':
-  ensure => present,
-  require => Package['git-core'],
-}
 
 exec { 'download quicklisp':
   command => '/usr/bin/curl http://beta.quicklisp.org/quicklisp.lisp -o /tmp/quicklisp.lisp',
@@ -70,5 +46,7 @@ file { 'sbcl-ql-install.lisp':
 
 exec { 'install quicklisp':
   command => '/usr/bin/sbcl --load /tmp/sbcl-ql-install.lisp',
-  require => File['sbcl-ql-install.lisp'],
+  require => [ File['sbcl-ql-install.lisp'],
+               Package['sbcl'],
+               Exec['download quicklisp'] ],
 }
