@@ -17,36 +17,59 @@ exec { 'second update':
   require => Exec['add emacs repository'],
 }
 
-package { ['emacs24', 'emacs24-el', 'emacs24-common-non-dfsg']:
-  ensure => present,
-  require => Exec['second update'],
-}
-
-package { 'git-core':
-  ensure => present,
-  require => Exec['second update'],
-}
-
-package { ['sbcl', 'sbcl-doc', 'sbcl-source']:
+package { ['emacs24', 'emacs24-el', 'emacs24-common-non-dfsg',
+           'git-core',
+           'sbcl', 'sbcl-doc', 'sbcl-source',
+           ]:
   ensure => present,
   require => Exec['second update'],
 }
 
 
 exec { 'download quicklisp':
-  command => '/usr/bin/curl http://beta.quicklisp.org/quicklisp.lisp -o /tmp/quicklisp.lisp',
+  command => '/usr/bin/curl http://beta.quicklisp.org/quicklisp.lisp -o /home/vagrant/quicklisp.lisp',
   require => Package['curl'],
 }
 
 file { 'sbcl-ql-install.lisp':
-  path => '/tmp/sbcl-ql-install.lisp',
+  path => '/home/vagrant/sbcl-ql-install.lisp',
   ensure => present,
   source => 'puppet:///modules/quicklisp/sbcl-ql-install.lisp',
 }
 
-exec { 'install quicklisp':
-  command => '/usr/bin/sbcl --load /tmp/sbcl-ql-install.lisp',
-  require => [ File['sbcl-ql-install.lisp'],
-               Package['sbcl'],
-               Exec['download quicklisp'] ],
+file { 'emacs-dir':
+  path => '/home/vagrant/.emacs.d',
+  ensure => 'directory',
+  owner => 'vagrant',
+  mode => '755',
 }
+
+file { 'dot-emacs':
+  path => '/home/vagrant/.emacs',
+  ensure => present,
+  source => 'puppet:///modules/quicklisp/dot-emacs',
+}
+
+file { 'load-slime.el':
+  path => '/home/vagrant/.emacs.d/load-slime.el',
+  ensure => present,
+  source => 'puppet:///modules/quicklisp/load-slime.el',
+  require => File['emacs-dir'],
+}
+
+file { 'sbcl-ql-setup.sh' :
+  path => '/home/vagrant/sbcl-ql-setup.sh',
+  ensure => present,
+  owner => 'vagrant',
+  mode => '750',
+  source => 'puppet:///modules/quicklisp/sbcl-ql-setup.sh',
+}
+
+# exec { 'install quicklisp':
+#   command => '/usr/bin/sudo -u vagrant sh -c "cd /home/vagrant; ./sbcl-ql-setup.sh"',
+#   require => [ File['sbcl-ql-install.lisp'],
+#                File['sbcl-ql-setup.sh'],
+#                File['emacs-dir'],
+#                Package['sbcl'],
+#                Exec['download quicklisp'],  ],
+# }

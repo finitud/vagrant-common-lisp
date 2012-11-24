@@ -23,7 +23,10 @@ just throw the files into your project's main directory (less clean).
 
 Issues
 ======
-* Need to add slime loading to .emacs after installing Quicklisp
-* Fix Quicklisp installation -> needs a bash script running on ~vagrant directory
+* The Quicklisp configuration script doesn't work properly. To finish the VM setup, run
+
+    ./sbcl-ql-setup.sh
+
+the first time you log into the VM.
 
 
