@@ -1,0 +1,9 @@
+;; Load all load-*.el files in the .emacs.d directory
+
+(mapcar 'load-file
+ (file-expand-wildcards "~/.emacs.d/load-*.el" t))
+
+;; Continue loading the standard init.el file...
+
+(if (file-exists-p "~/.emacs.d/init.el")
+    (load-file "~/.emacs.d/init.el"))
