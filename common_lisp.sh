@@ -28,6 +28,6 @@ sbcl --load quicklisp.lisp <<EOF
 EOF
 
 # Configure dot-emacs file to load Quicklisp slime helper
-echo "(load (expand-file-name \"~/quicklisp/slime-helper.el\"))" >> ~/.emacs
-echo "(setq inferior-lisp-program \"/usr/bin/sbcl\")" >> ~/.emacs
+echo "(load (expand-file-name \"~/quicklisp/slime-helper.el\"))" >> ~vagrant/.emacs
+echo "(setq inferior-lisp-program \"/usr/bin/sbcl\")" >> ~vagrant/.emacs
 
