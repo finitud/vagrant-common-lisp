@@ -57,19 +57,14 @@ file { 'load-slime.el':
   require => File['emacs-dir'],
 }
 
-file { 'sbcl-ql-setup.sh' :
-  path => '/home/vagrant/sbcl-ql-setup.sh',
-  ensure => present,
-  owner => 'vagrant',
-  mode => '750',
-  source => 'puppet:///modules/quicklisp/sbcl-ql-setup.sh',
+exec { 'install quicklisp':
+  cwd => '/home/vagrant',
+  creates => '/home/vagrant/quicklisp/setup.lisp',
+  environment => 'HOME=/home/vagrant',
+  user => 'vagrant',
+  command => '/usr/bin/sbcl --load sbcl-ql-install.lisp',
+  require => [ File['sbcl-ql-install.lisp'],
+               File['emacs-dir'],
+               Package['sbcl'],
+               Exec['download quicklisp'],  ],
 }
-
-# exec { 'install quicklisp':
-#   command => '/usr/bin/sudo -u vagrant sh -c "cd /home/vagrant; ./sbcl-ql-setup.sh"',
-#   require => [ File['sbcl-ql-install.lisp'],
-#                File['sbcl-ql-setup.sh'],
-#                File['emacs-dir'],
-#                Package['sbcl'],
-#                Exec['download quicklisp'],  ],
-# }
