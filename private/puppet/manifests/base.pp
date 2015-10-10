@@ -25,15 +25,25 @@ package { ['emacs24', 'emacs24-el', 'emacs24-common-non-dfsg',
   require => Exec['second update'],
 }
 
-
 exec { 'download quicklisp':
+  user => 'vagrant',
   command => '/usr/bin/curl http://beta.quicklisp.org/quicklisp.lisp -o /home/vagrant/quicklisp.lisp',
+  creates => '/home/vagrant/quicklisp.lisp',
   require => Package['curl'],
+}
+
+# The original version of this script downloaded quicklisp.lisp
+# as user:group root:root, which is undesirable. This fixes that
+# issue in an already-provisioned VM. 
+exec { 'fix quicklisp permissions':
+  command => '/bin/chown vagrant quicklisp.lisp',
+  require => Exec['download quicklisp'],
 }
 
 file { 'sbcl-ql-install.lisp':
   path => '/home/vagrant/sbcl-ql-install.lisp',
   ensure => present,
+  owner => 'vagrant',
   source => 'puppet:///modules/quicklisp/sbcl-ql-install.lisp',
 }
 
@@ -47,12 +57,14 @@ file { 'emacs-dir':
 file { 'dot-emacs':
   path => '/home/vagrant/.emacs',
   ensure => present,
+  owner => 'vagrant',
   source => 'puppet:///modules/quicklisp/dot-emacs',
 }
 
 file { 'load-slime.el':
   path => '/home/vagrant/.emacs.d/load-slime.el',
   ensure => present,
+  owner => 'vagrant',
   source => 'puppet:///modules/quicklisp/load-slime.el',
   require => File['emacs-dir'],
 }
