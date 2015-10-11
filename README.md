@@ -20,3 +20,5 @@ The new box can be accessed by typing:
 The contents of the current directory can be accessed from the virtual machine at `/vagrant`,
 so you can clone the repository to a new folder and copy your projects there (cleaner) or
 just throw the files into your project's main directory (less clean).
+
+This project is licensed under the MIT Licence. See LICENCE.txt for the full text.
