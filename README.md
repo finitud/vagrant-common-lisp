@@ -3,7 +3,7 @@ Common Lisp Vagrantfile
 
 This is a minimal environment to set up a vagrant box for Common Lisp development.
 It includes the following features:
-* 32-bit Ubuntu Precise Pangolin based
+* 32-bit Ubuntu 14.04 Trusty Tahir based
 * SBCL
 * Emacs 24
 * Quicklisp
