@@ -1,4 +1,5 @@
 Common Lisp Vagrantfile
+======
 
 This is a minimal environment to set up a vagrant box for Common Lisp development.
 It includes the following features:
