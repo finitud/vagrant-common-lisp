@@ -1,0 +1,11 @@
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+" See http://unix.stackexchange.com/a/57911 for tip on enabling vim menus
+:set nocompatible
+:set wildmenu
+:set wildmode=full
+:source $VIMRUNTIME/menu.vim
+:set wildcharm=<C-Z>
+:map <F4> :emenu <C-Z>
