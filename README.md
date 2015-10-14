@@ -5,11 +5,13 @@ This is a minimal environment to set up a vagrant box for Common Lisp developmen
 It includes the following features:
 * 32-bit Ubuntu Precise Pangolin based
 * SBCL
+* clisp
 * Emacs 24
 * Quicklisp
 * Slime
 * vim 7.3
 * slimv
+* syntastic
 * tmux
 * Port 80 forwarded to localhost:8000
 
@@ -27,9 +29,14 @@ This project is licensed under the MIT Licence. See LICENCE.txt for the full tex
 
 This project not only installs the [Steel Bank Common Lisp](http://www.sbcl.org/) package, but also installs support for [Read-Eval-Print-Loop](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) (REPL) integrations and language helpers for both `emacs` and `vim`.
 
+It also installs the [GNU clisp](http://www.clisp.org/) implementation, partly
+to support syntax / style checking with the vim [syntastic](https://github.com/scrooloose/syntastic) extension.
+
 Getting started with emacs and slime
 ----
 [Emacs](https://www.gnu.org/software/emacs/) with [slime](https://common-lisp.net/project/slime/) is the dominant IDE used in the Common Lisp world [as of 2015](http://eudoxia.me/article/common-lisp-sotu-2015/).
+
+![emacs slime session showing compilation output](emacs-session.png)
 
 A step-by-step tutorial is available as part of [this blog by Bill Clementson](https://web.archive.org/web/20130718152035/http://bc.tech.coop/blog/050501.html) that is an extract from [this common lisp music course by Matt Wright and Fernando Lopez-Lezcano](https://web.archive.org/web/20061208063908/http://ccrma.stanford.edu/courses/220b/intro/220b-environment-tutorial.html).  The [slime reference manual is available online](https://common-lisp.net/project/slime/doc/html/index.html#Top).
 
@@ -53,6 +60,8 @@ Add some lisp code, save wih `C-c C-s` and quit with `C-c C-x`.
 Getting started with vim and slimv
 ----
 If you would rather use a vi-family editor, don't despair. A port of slime to [vim](http://www.vim.org/) called [slimv](https://github.com/kovisoft/slimv) is available and configured in this image. 
+
+![vim and slimv session showing syntastic output](vim-session.png)
 
 `vim` is configured with a slimv menu that you can get to using tab completion with the `:emenu slimv` command, or by hitting the `F4` key. 
 

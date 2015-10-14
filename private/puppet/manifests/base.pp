@@ -20,6 +20,7 @@ exec { 'second update':
 package { ['emacs24', 'emacs24-el', 'emacs24-common-non-dfsg',
            'git-core',
            'sbcl', 'sbcl-doc', 'sbcl-source',
+           'clisp', 'clisp-doc','clisp-dev', 'gdb',
            'tmux',
            'vim-nox',
            ]:
@@ -158,6 +159,30 @@ exec { 'install vim-sensible':
                Package['vim-nox'],
 	       ],
 }
+
+exec { 'download syntastic':
+  user => 'vagrant',
+  cwd => '/home/vagrant/.vim/bundle',
+  command => '/usr/bin/git clone https://github.com/scrooloose/syntastic.git',
+  creates => '/home/vagrant/.vim/bundle/syntastic',
+  require => [ File['dot-vim'],
+               File['dot-vimrc'],
+               Exec['download vim-pathogen'],
+               Package['vim-nox'],
+	       ],
+}
+
+exec { 'install syntastic':
+  user => 'vagrant',
+  cwd => '/home/vagrant/.vim/bundle/syntastic',
+  command => '/usr/bin/git checkout 3.7.0',
+  require => [ File['dot-vim'],
+               File['dot-vimrc'],
+               Exec['download syntastic'],
+               Package['vim-nox'],
+	       ],
+}
+
 
 exec { 'download slimv':
   user => 'vagrant',
