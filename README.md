@@ -101,6 +101,8 @@ Further Reading
 * [Practical Common Lisp](http://www.gigamonkeys.com/book/) by Peter Seibel / [buy from amazon](http://www.amazon.com/Practical-Common-Lisp-Peter-Seibel/dp/1590592395)
 * [Land of Lisp](http://landoflisp.com/): Learn to Program in Lisp, One Game at a Time! by Conrad Barski / [buy from amazon](http://www.amazon.com/Land-Lisp-Learn-Program-Game/dp/1593272812)
 * [Common Lisp the Language](https://www.cs.cmu.edu/Groups/AI/html/cltl/cltl2.html) by Guy Steele / [buy from amazon](http://www.amazon.com/Common-LISP-Language-Second-Edition/dp/1555580416) 
+* [Setting up a Vim-based Common Lisp development environment on Ubuntu](http://journal.okal.me/post/75919443198/setting-up-a-vim-based-common-lisp-development)
+* [Quickstart: Getting Started with Clojure via Vim, Lein, Slimv (Windows + Linux)](http://adambard.com/blog/quickstart-clojure-on-vim-lein-slimv-windows/)
 
 Panic!
 ====
