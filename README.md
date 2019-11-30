@@ -104,7 +104,7 @@ Further Reading
 * [Common Lisp the Language](https://www.cs.cmu.edu/Groups/AI/html/cltl/cltl2.html) by Guy Steele / [buy from amazon](http://www.amazon.com/Common-LISP-Language-Second-Edition/dp/1555580416)
 * [Setting up a Vim-based Common Lisp development environment on Ubuntu](http://journal.okal.me/post/75919443198/setting-up-a-vim-based-common-lisp-development)
 * [Quickstart: Getting Started with Clojure via Vim, Lein, Slimv (Windows + Linux)](http://adambard.com/blog/quickstart-clojure-on-vim-lein-slimv-windows/)
-* [Using Vim for Lisp developmenbt](http://stackoverflow.com/questions/94792/using-vim-for-lisp-development)
+* [Using Vim for Lisp development](http://stackoverflow.com/questions/94792/using-vim-for-lisp-development)
 
 Panic!
 ====
