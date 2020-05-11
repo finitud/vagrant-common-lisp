@@ -1,6 +1,6 @@
 # Ignore backups
+*.log
 *.swp
 *~
-*.swp
-\#*\#
 .vagrant
+\#*\#

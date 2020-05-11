@@ -3,17 +3,18 @@ Common Lisp Vagrantfile
 
 This is a minimal environment to set up a vagrant box for Common Lisp development.
 It includes the following features:
-* 32-bit Ubuntu 14.04 Trusty Tahir based
-* SBCL
-* clisp
-* Emacs 24
-* Quicklisp
-* Slime
-* vim 7.3
-* slimv
-* syntastic
-* tmux
-* Port 80 forwarded to localhost:8000
+* [Vagrant](https://vagrantup.com) support through [Virtualbox](https://www.virtualbox.org/)
+* 64-bit [Ubuntu 18.04 Bionic Beaver](https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes) Linux distribution
+* [SBCL](http://www.sbcl.org/)
+* [clisp](https://clisp.sourceforge.io/)
+* [Emacs](https://www.gnu.org/software/emacs/) 24
+* [Quicklisp](https://www.quicklisp.org/)
+* [Slime](https://common-lisp.net/project/slime/)
+* [vim](https://www.vim.org/) 7.3
+* [slimv](https://kovisoft.bitbucket.io/tutorial.html)
+* [syntastic](https://github.com/scrooloose/syntastic)
+* [tmux](https://en.wikipedia.org/wiki/Tmux)
+* Port 80 forwarded to [localhost:8000](http://localhost:8000)
 
 To set up, clone the repository and run:
 
@@ -34,7 +35,7 @@ to support syntax / style checking with the vim [syntastic](https://github.com/s
 
 Getting started with emacs and slime
 ----
-[Emacs](https://www.gnu.org/software/emacs/) with [slime](https://common-lisp.net/project/slime/) is the dominant IDE used in the Common Lisp world [as of 2015](http://eudoxia.me/article/common-lisp-sotu-2015/).
+[Emacs](https://www.gnu.org/software/emacs/) with [slime](https://common-lisp.net/project/slime/) is the dominant IDE used in the Common Lisp world [as of 2015](https://borretti.me/article/common-lisp-sotu-2015).
 
 ![emacs slime session showing compilation output](emacs-session.png)
 
@@ -46,7 +47,7 @@ Start emacs:
 
     emacs hello.lisp
 
-Invoke `M-x slime` to start the REPL, and type lisp expressions: 
+Invoke `M-x slime` to start the REPL, and type lisp expressions:
 
     (format t "Hello, world!~%")
     (+ 1 2)
@@ -59,11 +60,11 @@ Add some lisp code, save wih `C-c C-s` and quit with `C-c C-x`.
 
 Getting started with vim and slimv
 ----
-If you would rather use a vi-family editor, don't despair. A port of slime to [vim](http://www.vim.org/) called [slimv](https://github.com/kovisoft/slimv) is available and configured in this image. 
+If you would rather use a vi-family editor, don't despair. A port of slime to [vim](http://www.vim.org/) called [slimv](https://github.com/kovisoft/slimv) is available and configured in this image.
 
 ![vim and slimv session showing syntastic output](vim-session.png)
 
-`vim` is configured with a slimv menu that you can get to using tab completion with the `:emenu slimv` command, or by hitting the `F4` key. 
+`vim` is configured with a slimv menu that you can get to using tab completion with the `:emenu slimv` command, or by hitting the `F4` key.
 
 The [slimv tutorial](http://kovisoft.bitbucket.org/tutorial.html) goes into detail about using `slimv` for lisp development.
 
@@ -73,7 +74,7 @@ Start vim:
 
     vim hello.lisp
 
-Invoke `:emenu Slimv.Repl.Connect-Server` to start the REPL. Switch to it with `control-w j`, enter insert mode with `i` and type lisp expressions: 
+Invoke `:emenu Slimv.Repl.Connect-Server` to start the REPL. Switch to it with `control-w j`, enter insert mode with `i` and type lisp expressions:
 
     (format t "Hello, world!~%")
     (+ 1 2)
@@ -89,7 +90,7 @@ The `vim` installation is set up using [Pathogen](https://github.com/tpope/vim-p
 
 Quicklisp package management
 ====
-This setup uses [quicklisp](https://www.quicklisp.org/beta/) for LISP package management. See the instructions in the previous link for instructions on loading packages. The `sbcl` installation in this package already has quicklisp loaded into its init files. 
+This setup uses [quicklisp](https://www.quicklisp.org/beta/) for LISP package management. See the instructions in the previous link for instructions on loading packages. The `sbcl` installation in this package already has quicklisp loaded into its init files.
 
 For example, invoke `sbcl` or start a `slime`/`slimv` REPL within `emacs` or `vim` and issue these statements in order to load the web development framework [clack](http://clacklisp.org/):
 
@@ -100,7 +101,7 @@ Further Reading
 
 * [Practical Common Lisp](http://www.gigamonkeys.com/book/) by Peter Seibel / [buy from amazon](http://www.amazon.com/Practical-Common-Lisp-Peter-Seibel/dp/1590592395)
 * [Land of Lisp](http://landoflisp.com/): Learn to Program in Lisp, One Game at a Time! by Conrad Barski / [buy from amazon](http://www.amazon.com/Land-Lisp-Learn-Program-Game/dp/1593272812)
-* [Common Lisp the Language](https://www.cs.cmu.edu/Groups/AI/html/cltl/cltl2.html) by Guy Steele / [buy from amazon](http://www.amazon.com/Common-LISP-Language-Second-Edition/dp/1555580416) 
+* [Common Lisp the Language](https://www.cs.cmu.edu/Groups/AI/html/cltl/cltl2.html) by Guy Steele / [buy from amazon](http://www.amazon.com/Common-LISP-Language-Second-Edition/dp/1555580416)
 * [Setting up a Vim-based Common Lisp development environment on Ubuntu](http://journal.okal.me/post/75919443198/setting-up-a-vim-based-common-lisp-development)
 * [Quickstart: Getting Started with Clojure via Vim, Lein, Slimv (Windows + Linux)](http://adambard.com/blog/quickstart-clojure-on-vim-lein-slimv-windows/)
 * [Using Vim for Lisp development](http://stackoverflow.com/questions/94792/using-vim-for-lisp-development)
@@ -112,4 +113,4 @@ If you are stuck in a LISP REPL and need to exit it, you can type:
     (quit)
 
 and the REPL will exit.
-    
+

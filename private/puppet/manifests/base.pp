@@ -2,22 +2,8 @@ exec { 'initial update':
   command => '/usr/bin/apt-get update',
 }
 
-package { ['curl', 'python-software-properties']:
-  ensure => present,
-  require => Exec['initial update'],
-}
-
-exec { 'add emacs repository':
-  command => '/usr/bin/add-apt-repository ppa:cassou/emacs -y',
-  require => Package['python-software-properties'],
-}
-
-exec { 'second update':
-  command => '/usr/bin/apt-get update',
-  require => Exec['add emacs repository'],
-}
-
-package { ['emacs24', 'emacs24-el', 'emacs24-common-non-dfsg',
+package { ['emacs25', 'emacs25-el', 'emacs25-common-non-dfsg',
+           'curl',
            'git-core',
            'sbcl', 'sbcl-doc', 'sbcl-source',
            'clisp', 'clisp-doc','clisp-dev', 'gdb',
@@ -25,7 +11,7 @@ package { ['emacs24', 'emacs24-el', 'emacs24-common-non-dfsg',
            'vim-nox',
            ]:
   ensure => present,
-  require => Exec['second update'],
+  require => Exec['initial update'],
 }
 
 exec { 'download quicklisp':
@@ -175,7 +161,7 @@ exec { 'download syntastic':
 exec { 'install syntastic':
   user => 'vagrant',
   cwd => '/home/vagrant/.vim/bundle/syntastic',
-  command => '/usr/bin/git checkout 3.7.0',
+  command => '/usr/bin/git checkout 3.10.0',
   require => [ File['dot-vim'],
                File['dot-vimrc'],
                Exec['download syntastic'],
@@ -199,7 +185,7 @@ exec { 'download slimv':
 exec { 'install slimv':
   user => 'vagrant',
   cwd => '/home/vagrant/.vim/bundle/slimv',
-  command => '/usr/bin/git checkout 0.9.12',
+  command => '/usr/bin/git checkout c832d79c2fdeb094cae109e45c1c41d3d520af2a',
   require => [ File['dot-vim'],
                File['dot-vimrc'],
                Exec['download slimv'],
